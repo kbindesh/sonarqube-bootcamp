@@ -4,7 +4,6 @@
 
 - [A Jenkins server](https://github.com/kbindesh/jenkins-masterclass/tree/main/Module-03_Setting_up_Jenkins/02-Jenkins_on_EC2_Amzn_Linux)
 - [A SonarQube server](https://github.com/kbindesh/sonarqube-bootcamp/blob/main/Module-02_Setup_SonarQube/01-setup-sonarqube-on-linux.md)
-- [Maven on Jenkins server](https://github.com/kbindesh/maven-bootcamp/blob/main/Module-02_Setting_up_Maven_Environment/01-setup-mvn-on-amzn-linux-2.md)
 
 ## Step-01: Setup SonarQube server
 
@@ -81,12 +80,44 @@ mvn clean verify sonar:sonar \
 
 - Ref: https://docs.sonarsource.com/sonarqube/9.8/analyzing-source-code/scanners/sonarscanner-for-maven/
 
-## Step-05: Create & Run Jenkins Pipeline Job (automatically)
+## Step-05: Write Jenkinsfile with all the stages
+
+```
+pipeline{
+    agent any
+    environment {
+        PATH = "$PATH:/opt/apache-maven-3.9.8/bin"
+    }
+    stages{
+       stage('GetCode'){
+            steps{
+                git 'https://github.com/kbindesh/mvn-lab-project.git'
+            }
+         }
+       stage('Build'){
+            steps{
+                sh 'mvn clean package'
+            }
+         }
+        stage('SonarQube analysis') {
+          steps{
+              withSonarQubeEnv('sonarqube-9.9') {
+              // If you have configured more than one global server connection, you can specify its name
+              sh "mvn sonar:sonar"
+              }
+          }
+        }
+
+    }
+}
+```
+
+## Step-06: Create & Run Jenkins Pipeline Job (automatically)
 
 - Navigate to Jenkins server Dashboard >> **New Item**
   - **Name**: sonarqube-pipeline
   - **Project Type**: Pipeline
 
-## Step-06: Check the code review report from SonarQube web portal
+## Step-07: Check the code review report from SonarQube web portal
 
 - Launch SonarQube dashboard >> Sign-in
