@@ -1,4 +1,4 @@
-# Installing `SonarScanner` CLI on Windows
+# Install and Configure `SonarScanner` CLI on Windows
 
 ## Step-01: Download SonarScanner for Windows
  
@@ -18,6 +18,8 @@
 
 - Open a new Command Prompt window and run:
 
-```
-sonar-scanner -v
-```
+  ```
+  sonar-scanner -v
+  ```
+
+## Step-04: Configure SonarScanner
