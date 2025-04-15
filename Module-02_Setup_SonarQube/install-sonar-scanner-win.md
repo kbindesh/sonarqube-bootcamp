@@ -9,9 +9,10 @@
 ## Step-02: Add SonarScanner to your System path
 
 - To make SonarScanner accessible from the command line:
-  1. Navigate to Start Menu and search for **Environment Variables** >> Systems Variables >> click Edit.
-  5. Click New and add the path to your SonarScanner bin directory (e.g., C:\binaries\sonar-scanner\bin).
-  6. Click Save >> Ok & Exit the Environment Variables window.
+  1. Navigate to Start Menu >> **Edit the System Environment Variables**
+  2. Select **Advanced** tab >> Click on **Environment Variables** button >> Under **Systems Variables** section >> Select Path & click Edit
+  3. Click **New** button and paste your sonar-scanner bin directory location (e.g. C:\binaries\sonar-scanner\bin) >> Click **Ok** button.
+
 
 ## Step-03: Verify Installation
 
