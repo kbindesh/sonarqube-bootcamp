@@ -1,29 +1,24 @@
-pipeline{
-    agent any
-    environment {
-        PATH = "$PATH:/opt/apache-maven-3.8.2/bin"
+pipeline {
+  agent any
+
+  tools {
+    jdk 'Java-17'
+    maven 'Maven-3.9.8'
+  }
+
+  stages {
+    stage('Clean and Validate Maven App') {
+      steps{
+        sh 'mvn clean validate'
+      }
     }
-    stages{
-       stage('GetCode'){
-            steps{
-                git 'https://github.com/kbindesh/mvn-lab-project.git'
-            }
-         }        
-       stage('Build'){
-            steps{
-                sh 'mvn clean package'
-            }
-         }
-        stage('SonarQube analysis') {
-        // def scannerHome = tool 'SonarScanner 4.0';
-            steps{
-                withSonarQubeEnv('sonarqube-8.9') { 
-                // If you have configured more than one global server connection, you can specify its name
-                // sh "${scannerHome}/bin/sonar-scanner"
-                sh "mvn sonar:sonar"
-                }
-            }
+
+    stage('Static Code Analysis'){
+      steps{
+        withSonarQubeEnv('sonarqube-server'){
+          sh 'mvn package sonar:sonar -Dsonar.projectKey=bin-project-org_bin-project -Dsonar.organization=bin-project-org -Dsonar.projectName=bin_project -Dsonar.host.url=https://sonarcloud.io -Dsonar.token=5a1695356b859106f3f8a7f -X'
         }
-       
+      }
     }
+  }
 }
