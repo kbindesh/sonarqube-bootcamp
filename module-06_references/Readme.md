@@ -1,4 +1,4 @@
-# SonarQube References
+# SonarQube Reference
 
 - [Setting-up SonarQube server](https://docs.sonarsource.com/sonarqube/9.8/setup-and-upgrade/install-the-server/)
 

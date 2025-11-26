@@ -10,7 +10,7 @@
   - **Jenkins**: Automation server
   - **SonarQube**: Static Code Analysis Tool
 
-## `Prerequisites` for reviewing Maven project on Jenkins server
+## Step-01: `Prerequisites` for reviewing Maven project on Jenkins server
 
 - [Jenkins server](https://github.com/kbindesh/jenkins-masterclass/blob/main/Module-03_Setting_up_Jenkins/01-jenkins-on-amazon-linux/Readme.md)
 
@@ -47,7 +47,7 @@
   MAVEN_HOME: /opt/apache-maven-3.9.8
   ```
 
-## Step-XX: Develop a new Maven Project
+## Step-04: Develop a new Maven Project
 
 - Launch VS Code (IDE) >> Create a new project folder and open it in the VS Code >> **View** menu >> **Terminal**
 
@@ -66,7 +66,7 @@
   - The **src/test/java** directory contains the test source
   - The **pom.xml** file is the project's Project Object Model, or POM.
 
-## Step-XX: Compile and Build the Maven Project
+## Step-05: Compile and Build the Maven Project
 
 ```
 # Validate Maven project
@@ -87,13 +87,13 @@ java -cp target/my-app-1.0-SNAPSHOT.jar com.mycompany.app.App
 [The preceding command should display the "Hello World" message without any errors]
 ```
 
-## Step-XX: Create a new GitHub repo and Push the Maven project to it
+## Step-06: Create a new GitHub repo and Push the Maven project to it
 
-## Step-XX: Create a new `SonarQube Cloud Account`
+## Step-07: Create a new `SonarQube Cloud Account`
 
 - Navigate to https://www.sonarsource.com/products/sonarcloud/signup/ >> Select **GitHub** >> Enter your GitHub credentials to login.
 
-## Step-XX: Create `SonarQube Organization` and `Project`
+## Step-08: Create `SonarQube Organization` and `Project`
 
 ### Create a new `SonarQube Organization`
 
@@ -110,14 +110,14 @@ java -cp target/my-app-1.0-SNAPSHOT.jar com.mycompany.app.App
   - **Project visibility**: Public
   - **The new code for this project will be based on**: Previous version
 
-## Step-XX: Generate a new SonarQube Authentication Token
+## Step-09: Generate a new SonarQube Authentication Token
 
 - Sign-in to your SonarQube Account >> Click on your user drop-down list (top-right corner) >> **My Account**
 - Select **Security** tab >> click on **Generate Token** button
   - Name: jenkins
 - Copy the generated token and store at save place as we'll need it in our next step.
 
-## Step-XX: Save SonarQube Account token on Jenkins server
+## Step-10: Save SonarQube Account token on Jenkins server
 
 - Jenkins Dashboard >> **Manage Jenkins** >> **Credentials** >> **System** >> **Global credentials (unrestricted)**
 - Click on New Credentials button
@@ -127,7 +127,7 @@ java -cp target/my-app-1.0-SNAPSHOT.jar com.mycompany.app.App
   - **ID**: sonarqube
 - Click on **Create** button
 
-## Step-XX: Save SonarQube Server details on Jenkins server
+## Step-11: Save SonarQube Server details on Jenkins server
 
 - Jenkins Dashboard >> **Manage Jenkins** >> **System**.
 - Scroll down all the way to **SonarQube server section** (thanks to sonarqube scanner plugin).
@@ -137,12 +137,12 @@ java -cp target/my-app-1.0-SNAPSHOT.jar com.mycompany.app.App
   - **Server Authentication Token**: <select_sonar_token_we_created_earlier>
 - Click **Save** button
 
-## Step-XX: `Install SonarScanner plugin` on Jenkins server
+## Step-12: `Install SonarScanner plugin` on Jenkins server
 
 - Jenkins Dashboard >> **Manage Jenkins** >> **Plugins**
 - Select Available plugins tab >> serach for **SonarQube scanner** >> _Select_ and _Install_
 
-## Step-XX: Setup `SonarScanner CLI for Maven` on Jenkins server
+## Step-13: Setup `SonarScanner CLI for Maven` on Jenkins server
 
 - **Ref**
   - https://docs.sonarsource.com/sonarqube-server/8.9/analyzing-source-code/scanners/sonarscanner/
@@ -173,7 +173,7 @@ source ~/.bash_profile
 sonar-scanner --version
 ```
 
-## Step-XX: Create a `Jenkinsfile` for the Maven project
+## Step-14: Create a `Jenkinsfile` for the Maven project
 
 - Add SonarQube stage to the Jenkinsfile
 
@@ -206,7 +206,7 @@ sonar-scanner --version
     }
     ```
 
-## Step-XX: Create a sonar-project.properties file
+## Step-15: Create a sonar-project.properties file
 
 - On your local system, Visual Studio Code >> Open your Maven (java) project >> Create a new file **sonar-project.properties**
 
@@ -222,7 +222,7 @@ sonar.java.binaries=target/classes
 sonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
 ```
 
-## Step-XX: Push the Maven project and other config files to GitHub
+## Step-16: Push the Maven project and other config files to GitHub
 
 - From you local system, commit the maven app code and Jenkinsfile updates and push it to GitHub:
 
@@ -242,7 +242,7 @@ git push -u origin <branch_name>
 
 - To verify the code push, switch to your GitHub repo and validate it.
 
-## Step-XX: `Configuring SonarScanner for Maven` on Jenkins server
+## Step-17: `Configuring SonarScanner for Maven` on Jenkins server
 
 - Ref: https://docs.sonarsource.com/sonarqube-server/9.6/analyzing-source-code/scanners/sonarscanner-for-maven/
 
@@ -288,14 +288,14 @@ mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar
 
 ```
 
-## Step-XX: Create a new GitHub Webhook for triggering Jenkins Job automatically
+## Step-18: Create a new GitHub Webhook for triggering Jenkins Job automatically
 
-## Step-XX: Create & Run Jenkins Job
+## Step-19: Create & Run Jenkins Job
 
 - Navigate to Jenkins server Dashboard >> **New Item**
   - **Name**: sonarqube-pipeline
   - **Project Type**: Pipeline
 
-## Step-XX: Check the code review report from SonarQube web portal
+## Step-20: Check the code review report from SonarQube web portal
 
 - Launch SonarQube cloud dashboard >> Select the project >> You will see the analyzed report
