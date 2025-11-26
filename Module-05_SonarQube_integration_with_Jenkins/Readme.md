@@ -10,25 +10,17 @@
   - **Jenkins**: Automation server
   - **SonarQube**: Static Code Analysis Tool
 
-## Step-01: Setup a `Jenkins Server` as Maven Build Server
+## `Prerequisites` for reviewing Maven project on Jenkins server
 
-### 1.1 `Setup Jenkins` server
+- [Jenkins server](https://github.com/kbindesh/jenkins-masterclass/blob/main/Module-03_Setting_up_Jenkins/01-jenkins-on-amazon-linux/Readme.md)
 
-- To setup _Jenkins_ on Amazon Linux EC2 instance, kindly refer this link: <br/> https://github.com/kbindesh/jenkins-masterclass/blob/main/Module-03_Setting_up_Jenkins/01-jenkins-on-amazon-linux/Readme.md
+- [Maven](https://github.com/kbindesh/maven-bootcamp/blob/main/Module-02_Setting_up_Maven_Environment/01-setup-mvn-on-amzn-linux-2.md)
 
-### 1.2 Setup `Maven` on Jenkins server
-
-- To setup _Maven_ on Amazon Linux EC2 instance, kindly refer this link: <br/> https://github.com/kbindesh/maven-bootcamp/blob/main/Module-02_Setting_up_Maven_Environment/01-setup-mvn-on-amzn-linux-2.md
-
-### 1.3 Install `Git`
-
-```
-sudo yum install -y git
-```
+- Git (in case not installed - sudo dnf install -y git)
 
 ## Step-02: Install necessary `Jenkins Plugins`
 
-- Jenkins Dashboard >> **Manage Jenkins** >> **Plugins** >> **Available Plugins**
+- Open Jenkins Dashboard >> **Manage Jenkins** >> **Plugins** >> **Available Plugins**
 
 - Install following Jenkins plugins:
 
